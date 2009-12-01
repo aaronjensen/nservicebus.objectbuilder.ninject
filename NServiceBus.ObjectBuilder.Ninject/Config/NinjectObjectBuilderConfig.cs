@@ -12,7 +12,7 @@ namespace NServiceBus.ObjectBuilder.Ninject.Config
 	{
 		public static Configure NinjectBuilder(this Configure config, IKernel kernel)
 		{
-			ConfigureCommon.With(config, new NinjectObjectBuilder(kernel));
+		  ConfigureCommon.With(config, new NinjectObjectBuilder(kernel));
 			return config;
 		}
 	}

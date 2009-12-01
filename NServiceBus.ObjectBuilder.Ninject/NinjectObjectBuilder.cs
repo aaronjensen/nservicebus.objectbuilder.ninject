@@ -22,12 +22,10 @@ namespace NServiceBus.ObjectBuilder.Ninject
 
 		public object Build(Type typeToBuild)
 		{
-			if (_parameters.ContainsKey(typeToBuild))
-			{
-				return _kernel.Get(typeToBuild, _parameters[typeToBuild].ToArray());
-			}
+		  var parameters = _parameters.Where(x => typeToBuild.IsAssignableFrom(x.Key)).SelectMany(x => x.Value).ToArray();
+		  var output = _kernel.Get(typeToBuild, parameters);
 
-			return _kernel.Get(typeToBuild);
+      return output;
 		}
 
 		public IEnumerable<object> BuildAll(Type typeToBuild)
