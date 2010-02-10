@@ -70,6 +70,12 @@ namespace NServiceBus.ObjectBuilder.Ninject
 		{
 			_kernel.Bind(lookupType).ToConstant(instance);
 		}
+
+	  public bool HasComponent(Type componentType)
+	  {
+		  var bindings = _kernel.GetBindings(componentType);
+	    return bindings.Any();
+	  }
 	}
 
   class ObjectBuilderPropertyHeuristic : IInjectionHeuristic
